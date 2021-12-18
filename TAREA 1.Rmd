@@ -1,0 +1,413 @@
+---
+title: "Trabajo 1"
+author: "Kevin Huanca"
+date: "17/12/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#  DESARROLLO DE LA PRACTICA 1 
+##  PRIMERA PARTE 
+1. Calcula los valores numéricos aproximados de:
+
+##  a
+```{r}
+(0.3*0.15)/(0.3*0.15+0.2*0.8+0.5*0.12)
+
+
+```
+##  b
+```{r}
+(5^6)/factorial(6)*exp(-5)
+
+```
+
+##  c
+```{r}
+
+(factorial(20))/(factorial(13)*factorial(7))
+
+```
+2. Realizar la siguiente suma
+
+##  a
+```{r}
+a <-seq(1,1000,1) 
+sum(a)
+
+
+```
+##  b
+```{r}
+
+(2^32*2)-1
+```
+
+3. El vector grupo representa el grupo al que pertenece una serie de alumnos
+
+##  a. ¿Cuántos elementos tiene?
+
+```{r}
+load(url("https://goo.gl/uDzU8v"))
+lista.alumnos<- c(grupo)
+length(lista.alumnos)
+
+```
+
+
+##  b. ¿En que posiciones del vector estan la letra A ?
+```{r}
+which(grupo == "A")
+
+```
+
+4. El vector nota representa la nota de un examen de los alumnos que estan en los grupos del vector grupo
+
+##  a.¿Cuánto suman todas las notas?
+
+```{r}
+Vector_nota<- c(nota)
+sum(Vector_nota)
+
+```
+
+##  b.¿Cual es la media aritmética de todas las notas?
+```{r}
+mean(Vector_nota)
+
+```
+##  c.¿En qué posiciones están las notas mayores de 7.0?
+```{r}
+which(nota >7.0)
+
+```
+
+##  d.Visualiza las notas ordenadas de mayor a menor
+```{r}
+sort(Vector_nota,decreasing=TRUE)
+
+
+```
+##  e.¿En qué posición están la nota máxima?
+```{r}
+
+which(nota==7.7)
+```
+
+5. A partir de los vectores grupo y nota definidos
+
+##  a.Suma las notas de los 10 primeros alumnos del vector
+
+```{r}
+
+sum(Vector_nota[1:10])
+```
+
+##  b.¿Cuántos alumnos hay del grupo C?
+```{r}
+  
+data.1<- data.frame(nota,grupo)
+length(which(data.1$grupo == "C"))
+
+
+```
+
+
+##  c.¿Cuántos alumnos han aprobado?
+```{r}
+
+length(which(data.1$nota >5.0))
+```
+
+
+##  d.Cuántos alumnos del grupo B han aprobado?
+```{r}
+length(which(data.1$grupo =="B" & data.1$nota >5.0))
+
+```
+
+
+##  e.¿Qué porcentaje de alumnos del grupo C han aprobado?
+```{r}
+length(which(data.1$grupo == "C" & data.1$nota >5.0))*100/length(which(data.1$grupo == "C"))
+```
+
+##  f.¿De qué grupos son la mÃ¡xima y mÃ­nima notas de toda la muestra?
+```{r}
+
+grupo[120]
+grupo[142]
+```
+
+## g.Nota media de los alumnos de grupo A y B, juntos, considerando sólo a los que han aprobado.
+```{r}
+nota_A.aprobado<- nota[c(2,17,28,108)]
+
+nota_B.aprobado<- nota[c(13,18,65,86,103,148,170,176,186,187)]
+sum(nota_A.aprobado)+sum(nota_B.aprobado)/ length(nota_A.aprobado) + length(nota_B.aprobado)
+
+
+
+```
+##  6.Calcula el percentil 66 de las notas de todos los alumnos,y tambien de los alumnos del grupo C.
+```{r}
+
+66*length(nota)/100
+```
+
+
+##  7.Un alumno tiene una nota de 4.9. ¿Qué porcentaje, del total de alumnos, tiene una nota menor o igual que la suya? ¿Y qué porcentaje tiene una nota mayor o igual que la suya?
+```{r}
+length(which(nota <= 4.9))/length(nota)*100
+length(which(nota >= 4.9))/length(nota)*100
+
+```
+
+
+##  8.Realiza el gráfico de diagramas de caja de las notas de cada grupo, para poder comparar el nivel de cada uno de ellos.
+```{r}
+data.2 <- data.frame(nota,grupo) 
+
+x<- data.2$nota[data.2$grupo== "A"]
+y<- data.2$nota[data.2$grupo== "B"]
+z<- data.2$nota[data.2$grupo== "C"]
+m<- data.2$nota[data.2$grupo== "D"]
+n<- data.2$nota[data.2$grupo== "D"]
+nombres<- c("GRUPO A","GRUPO B","GRUPO C","GRUPO D","GRUPO E")
+
+
+boxplot(x,y,z,m,n,names = nombres )
+
+```
+
+9. Si la variable conc recoge la concentración de plomo (en ppm) en el aire de cierta zona durante un dÃ­a completo
+
+##  a.¿ Cuál ha sido la concentración máxima?
+
+```{r}
+max(conc)
+
+```
+
+##  b.¿En cuántos de los muestreos se ha superado la concentración de 40.0 ppm?
+
+```{r}
+length(which(conc >40.0))
+
+```
+
+
+##  c.¿Cuál ha sido la concentración media del día?
+
+```{r}
+sum(conc)/length(conc)
+
+```
+##  d. ¿Cuáles fueron las 10 mediciones más bajas del día?
+```{r}
+conc_decrec<- sort(conc)
+conc_decrec[1:10]
+
+```
+
+##  e. Si la primera medida fue a las 00:00. ¿A qué hora del día se alcanza la concentración máxima?
+```{r}
+max(conc)
+
+
+
+```
+##  SEGUNDA PARTE
+##  1
+```{r}
+X<- c(1:10)
+
+Y<- c(1,4,6,8,25,36,49,61,81,100)
+plot(X,Y)
+
+```
+##  2
+```{r}
+
+a<- c(1:4)
+b<- c(seq(2,8,2))
+
+c<- c(seq(3,12,3))
+matriz.A<- matrix(c(a,b,c),ncol = 3,nrow = 4)
+matriz.A
+```
+
+##  3
+```{r}
+a1<-c(1,0,0)
+
+a2<- c(0,1,0)
+a3<- c(0,0,1)
+matriz.I<- cbind(a1,a2,a3)
+matriz.I*3
+
+```
+
+
+##  4
+```{r}
+matrix(rep(0,16),nrow = 4)
+
+```
+
+
+##  5
+```{r}
+
+matriz.4<- cbind(c(-1,0,0,0),c(0,1,0,0),c(0,0,2,0),c(0,0,0,3))
+matriz.B<- matriz.4+diag(4)
+matriz.B
+
+```
+
+
+##  6
+```{r}
+t(matriz.A)
+
+```
+
+##  7
+```{r}
+d<- c(0,0,0,0)
+matriz.A<- matrix(c(a,b,c,d),ncol = 4,nrow = 4)
+matriz.A+matriz.B
+matriz.A-matriz.B
+matriz.B*3
+matriz.A%*%matriz.B
+
+```
+
+##  8
+```{r}
+#install.packages("Biodem")
+#library("Biodem")
+matriz.C<- matrix(c(1,-2,1,2,4,0,3,-2,1),nrow = 3,ncol = 3)
+
+#mtx.exp(matriz.C,8)
+
+
+```
+
+##  9
+```{r}
+a9<- c(3,9,3)
+b9<- c(-1,-2,1)
+c9<- c(1,1,-2)
+A9<- cbind(a9,b9,c9)
+B9<- cbind(c(-1,-9,-9))
+
+solve(A9)%*%B9
+
+
+```
+##  10
+```{r}
+help(eigen)
+help(det) 
+
+```
+
+##  11
+```{r}
+m11<- c(1:10)
+n11 <-m11*2
+
+n12 <-m11*3
+n13 <-m11*4
+n14 <-m11*5
+A11 <-cbind(m11,n11,n12,n13,n14,nrow = 10,ncol = 5)
+
+
+f11<- c(0,1,0,0,1,1,0,1,1,0,0,1,0,0,1,1,0,1,0,1,0,1,0,1,0)
+B11<- matrix(f11,5)
+
+#A11%*%B11-A11%*%t(B11)
+```
+
+
+##  12
+```{r}
+x12<- matrix(c(1,1,1,1,1,1,-1,0,1,2),nrow = 5)
+y12<- matrix(c(0,0,1,1,3),nrow = 5)
+solve(t(x12)%*%x12)%*%t(x12)%*%y12
+
+```
+
+
+##  13
+```{r}
+means = aggregate(co2, FUN=mean)
+year = as.vector(time(means))
+co2 = as.vector(means)
+
+
+```
+
+
+##  13a
+```{r}
+co2
+year
+```
+
+##  13b
+```{r}
+y13 <-c(0,diff(co2))
+y13
+```
+
+
+##  13c
+```{r}
+
+plot(year,y13,type = "o", pch = 20, xlab = "aÃ±os", ylab = " diferencia de [CO2]",
+        main = "variacion de CO2 consecutivo", col= "black", font = 2)
+```
+
+##  13d
+```{r}
+plot(year,y13,xlim = c(1959,2020), type = "o", pch = 20, xlab = "Tiempo", ylab = " diferencia de [CO2]",
+     main = "variacion de CO2 consecutivo", col= "black", font = 2)
+points(2020,2.64, pch = 4, col = "red")
+```
+
+
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
